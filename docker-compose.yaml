@@ -1,0 +1,32 @@
+version: '3.7'
+
+services:
+    dbtest:
+        image: registry.2le.net/2le/[PROJECT]:dbtest
+
+    symfony:
+        build:
+            context: .
+        working_dir: /var/www/html
+        command: ["sh", "-c", "make prepare;apache2-foreground"]
+        volumes:
+            - ./:/var/www/html/
+        ports:
+            - "8263:80"
+        environment:
+            - "COMPOSER_MEMORY_LIMIT=-1"
+            - "CLIENT_ID=1_2e4xta9vc0yso880oswccwo40g8g84g0gsckcs8884808cccgk"
+            - "CLIENT_SECRET=1lmiyoitkjr40k4wcw0000s4g8owwk84wokocwks0k4k8ksk80"
+        depends_on:
+            - dbtest
+
+    pma:
+        image: phpmyadmin/phpmyadmin
+        links:
+            - dbtest:db
+        ports:
+            - "9263:80"
+        depends_on:
+            - dbtest
+        volumes:
+            - ./docker/php/php.ini:/usr/local/etc/php/conf.d/php-phpmyadmin.ini
