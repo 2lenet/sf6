@@ -5,7 +5,7 @@ stages:
     - deploy
 
 variables:
-    MYSQL_DATABASE: gedeonia
+    MYSQL_DATABASE: [PROJECT]
     MYSQL_ROOT_PASSWORD: pass
     IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
 
@@ -13,7 +13,7 @@ unittest:
     image: registry.2le.net/2le/2le:base-build-php8
     stage: test
     services:
-        - name: registry.2le.net/2le/gedeon-ia:dbtest
+        - name: registry.2le.net/2le/[PROJECT]:dbtest
           alias: dbtest
     script:
         - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.2le.net
@@ -58,7 +58,7 @@ deploy-master:
     only:
         - main
     script:
-        - ssh -o StrictHostKeyChecking=no root@hyperion.2le.net "cd /data/docker/gedeonia/; ./up.sh $CI_REGISTRY_IMAGE:latest gedeonia_symfony "
+        - ssh -o StrictHostKeyChecking=no root@hyperion.2le.net "cd /data/docker/[PROJECT]/; ./up.sh $CI_REGISTRY_IMAGE:latest symfony "
 
 #build-tags:
 #    stage: build
@@ -78,4 +78,4 @@ deploy-master:
 #    only:
 #        - tags
 #    script:
-#        - ssh -o StrictHostKeyChecking=no root@hyperion.2le.net "cd /data/docker/gedeonia-prod/; ./up.sh $IMAGE_TAG gedeonia_symfony "
+#        - ssh -o StrictHostKeyChecking=no root@hyperion.2le.net "cd /data/docker/[PROJECT]-prod/; ./up.sh $IMAGE_TAG symfony "

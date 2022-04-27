@@ -8,11 +8,15 @@ PROJECT := $(shell basename ${CURDIR})
 # run once after composer create-project
 init:
 	sed -i -E 's/\[PROJECT\]/$(PROJECT)/g' docker-compose.yaml
+	sed -i -E 's/\[PROJECT\]/$(PROJECT)/g' Dockerfile
 	sed -i -E 's/\[PROJECT\]/${PROJECT}/g' sonar-project.properties
 	sed -i -E 's/\[PROJECT\]/${PROJECT}/g' .env
 	sed -i -E 's/2lenet\/project/2lenet\/${PROJECT}/g' composer.json
 	sed -i -E 's/\[PROJECT\]/$(PROJECT)/g' dbtest/build.sh
-	sed -i -E 's/\[PROJECT\]/$(PROJECT)/g' dbtest/Dockerfile.sh
+	sed -i -E 's/\[PROJECT\]/$(PROJECT)/g' dbtest/Dockerfile
+	echo "build dbtest"
+	cd dbtest; ./build.sh
+	make install
 
 
 
@@ -28,10 +32,8 @@ install:
 # Start project
 start:
 	docker-compose up -d
-	@echo "Sf at http://127.0.0.1:8263/"
-	@echo "PMA at http://127.0.0.1:9263/"
-	@echo "Pyweb at http://127.0.0.1:8080/"
-
+	@echo "Sf at http://127.0.0.1:8000/"
+	@echo "PMA at http://127.0.0.1:9000/"
 
 # Stop project
 stop:
@@ -52,7 +54,7 @@ console:
 # Run migrations
 prepare:
 	bin/console doc:mi:mi --no-interaction --allow-no-migration
-	bin/console translation:pull loco --force
+	# bin/console translation:pull loco --force
 	bin/console assets:install --symlink
 	bin/console c:c -vv
 	bin/console c:w -vv
