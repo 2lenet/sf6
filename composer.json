@@ -1,6 +1,7 @@
 {
     "type": "project",
     "license": "proprietary",
+    "name": "2lenet/sf6",
     "minimum-stability": "stable",
     "prefer-stable": true,
     "repositories": [
