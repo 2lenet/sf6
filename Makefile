@@ -11,6 +11,7 @@ init:
 	sed -i -E 's/\[PROJECT\]/${PROJECT}/g' docker-compose.yaml
 	sed -i -E 's/\[PROJECT\]/${PROJECT}/g' sonar-project.properties
 	sed -i -E 's/\[PROJECT\]/${PROJECT}/g' .env
+	sed -i -E 's/2lenet\/project/2lenet\/${PROJECT}/g' composer.json
 
 # Install project
 install:

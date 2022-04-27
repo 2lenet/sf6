@@ -1,6 +1,6 @@
 {
-    "type": "template",
-    "name": "2lenet/sf6",
+    "type": "project",
+    "name": "2lenet/project",
     "license": "MIT",
     "minimum-stability": "stable",
     "prefer-stable": true,
@@ -52,6 +52,13 @@
         "twig/extra-bundle": "^2.12|^3.0",
         "twig/twig": "^2.12|^3.0",
         "vich/uploader-bundle": "^1.19"
+    },
+    "flex-require": {
+        "symfony/console": "*",
+        "symfony/dotenv": "*",
+        "symfony/framework-bundle": "*",
+        "symfony/runtime": "*",
+        "symfony/yaml": "*"
     },
     "require-dev": {
         "phpstan/phpstan-phpunit": "^1.0",
