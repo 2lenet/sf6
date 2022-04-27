@@ -8,7 +8,9 @@ CONSOLE = $(EXEC) bin/console
 init:
 	export PROJECT=`basename "${PWD}"`
 	echo ${PROJECT}
-	sed -E 's/\[PROJECT\]/${PROJECT}/g' docker-compose.yaml
+	sed -i -E 's/\[PROJECT\]/${PROJECT}/g' docker-compose.yaml
+	sed -i -E 's/\[PROJECT\]/${PROJECT}/g' sonar-project.properties
+	sed -i -E 's/\[PROJECT\]/${PROJECT}/g' .env
 
 # Install project
 install:
