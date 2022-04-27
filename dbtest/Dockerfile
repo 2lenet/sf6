@@ -4,7 +4,7 @@ FROM mariadb:10.4 as builder
 RUN ["sed", "-i", "s/exec \"$@\"/echo \"not running $@\"/", "/usr/local/bin/docker-entrypoint.sh"]
 
 # needed for intialization
-ENV MYSQL_DATABASE=gedeonia
+ENV MYSQL_DATABASE=[PROJET]
 ENV MYSQL_ROOT_PASSWORD=pass
 ENV MYSQL_ROOT_HOST=%
 

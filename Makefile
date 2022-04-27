@@ -4,14 +4,17 @@ EXEC := $(shell if [ -f /.dockerenv ]; then \
     	echo "docker-compose exec symfony"; \
 	fi)
 CONSOLE = $(EXEC) bin/console
-
+PROJECT := $(shell basename ${CURDIR})
+# run once after composer create-project
 init:
-	export PROJECT=`basename "${PWD}"`
-	echo ${PROJECT}
-	sed -i -E 's/\[PROJECT\]/${PROJECT}/g' docker-compose.yaml
+	sed -i -E 's/\[PROJECT\]/$(PROJECT)/g' docker-compose.yaml
 	sed -i -E 's/\[PROJECT\]/${PROJECT}/g' sonar-project.properties
 	sed -i -E 's/\[PROJECT\]/${PROJECT}/g' .env
 	sed -i -E 's/2lenet\/project/2lenet\/${PROJECT}/g' composer.json
+	sed -i -E 's/\[PROJECT\]/$(PROJECT)/g' dbtest/build.sh
+	sed -i -E 's/\[PROJECT\]/$(PROJECT)/g' dbtest/Dockerfile.sh
+
+
 
 # Install project
 install:
