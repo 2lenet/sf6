@@ -9,7 +9,6 @@ RUN COMPOSER_MEMORY_LIMIT=-1
 RUN composer install
 RUN bin/console assets:install
 RUN npm install
-RUN ls
 # RUN npm run build
 VOLUME ["/var/www/html/var/cache"]
 EXPOSE 80

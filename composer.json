@@ -116,6 +116,10 @@
     },
     "extra": {
         "symfony": {
+            "endpoint": [
+                "https://raw.githubusercontent.com/2lenet/flex/master/index.json",
+                "flex://defaults"
+            ],
             "allow-contrib": false,
             "require": "6.0.*"
         }

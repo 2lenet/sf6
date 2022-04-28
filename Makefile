@@ -16,9 +16,6 @@ init:
 	sed -i -E 's/\[PROJECT\]/$(PROJECT)/g' dbtest/Dockerfile
 	echo "build dbtest"
 	cd dbtest; ./build.sh
-	make install
-
-
 
 # Install project
 install:
@@ -59,7 +56,7 @@ prepare:
 	bin/console c:c -vv
 	bin/console c:w -vv
 	chmod -R 777 var
-	chmod -R 777 data
+	# chmod -R 777 data
 
 cbmigrate:
 	$(CONSOLE) d:m:g
