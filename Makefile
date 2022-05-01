@@ -9,6 +9,7 @@ PROJECT := $(shell basename ${CURDIR})
 init:
 	sed -i -E 's/\[PROJECT\]/$(PROJECT)/g' docker-compose.yaml
 	sed -i -E 's/\[PROJECT\]/$(PROJECT)/g' Dockerfile
+	sed -i -E 's/\[PROJECT\]/$(PROJECT)/g' Makefile
 	sed -i -E 's/\[PROJECT\]/${PROJECT}/g' sonar-project.properties
 	sed -i -E 's/\[PROJECT\]/${PROJECT}/g' .env
 	sed -i -E 's/\[PROJECT\]/${PROJECT}/g' .gitlab-ci
@@ -38,8 +39,8 @@ stop:
 	docker-compose down --remove-orphans
 
 build:
-	docker build --build-arg app_version=dev-${CI_PIPELINE_ID} -t registry.2le.net/2le/gedeon-ia .
-	docker push registry.2le.net/2le/gedeon-ia
+	docker build --build-arg app_version=dev-${CI_PIPELINE_ID} -t registry.2le.net/2le/[PROJECT] .
+	docker push registry.2le.net/2le/[PROJECT]
 
 # Clear cache
 cc:
