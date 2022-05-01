@@ -8,7 +8,7 @@ Encore
     .setOutputPath('public/build/')
     .setPublicPath('/build')
 
-    .addEntry('app', './assets/scripts/app.js')
+    .addEntry('app', './assets/js/app.js')
     .addStyleEntry('style', './assets/styles/app.scss')
 
     .enableSassLoader()
