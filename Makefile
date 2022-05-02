@@ -22,11 +22,9 @@ init:
 # Install project
 install:
 	docker-compose build
-	docker-compose up -d
-	docker-compose exec symfony composer install
-	docker-compose exec symfony npm install
-	docker-compose exec symfony chmod -R 777 var
-	docker-compose exec symfony bin/console doc:mi:mi --no-interaction --allow-no-migration
+	docker-compose run symfony composer install
+	docker-compose run symfony npm install
+	docker-compose run symfony chmod -R 777 var
 
 # Start project
 start:
