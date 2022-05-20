@@ -12,7 +12,7 @@ init:
 	sed -i -E 's/\[PROJECT\]/$(PROJECT)/g' Makefile
 	sed -i -E 's/\[PROJECT\]/${PROJECT}/g' sonar-project.properties
 	sed -i -E 's/\[PROJECT\]/${PROJECT}/g' .env
-	sed -i -E 's/\[PROJECT\]/${PROJECT}/g' .gitlab-ci
+	sed -i -E 's/\[PROJECT\]/${PROJECT}/g' .gitlab-ci.yml
 	sed -i -E 's/2lenet\/project/2lenet\/${PROJECT}/g' composer.json
 	sed -i -E 's/\[PROJECT\]/$(PROJECT)/g' dbtest/build.sh
 	sed -i -E 's/\[PROJECT\]/$(PROJECT)/g' dbtest/Dockerfile
