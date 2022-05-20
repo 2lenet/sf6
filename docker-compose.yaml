@@ -4,26 +4,15 @@ services:
     dbtest:
         image: registry.2le.net/2le/[PROJECT]:dbtest
 
-    nginx:
-      image: nginx:stable-alpine
-      ports:
-        - 127.0.0.1:8000:80
-      volumes:
-        - ./:/var/www/html/
-        - ./docker/nginx.conf:/etc/nginx/conf.d/default.conf
-      depends_on:
-        - symfony
-        - dbtest
-
     symfony:
         build: .
         working_dir: /var/www/html
+        ports:
+          - 127.0.0.1:8000:80
         volumes:
             - ./:/var/www/html/
         environment:
             - "COMPOSER_MEMORY_LIMIT=-1"
-            - "CLIENT_ID=1_2e4xta9vc0yso880oswccwo40g8g84g0gsckcs8884808cccgk"
-            - "CLIENT_SECRET=1lmiyoitkjr40k4wcw0000s4g8owwk84wokocwks0k4k8ksk80"
         depends_on:
             - dbtest
 
