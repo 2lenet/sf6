@@ -5,8 +5,7 @@ WORKDIR /var/www/html
 ENV APP_NAME="[PROJECT]"
 ARG app_version=dev
 ENV APP_VERSION=$app_version
-RUN COMPOSER_MEMORY_LIMIT=-1
-RUN composer install
+RUN COMPOSER_MEMORY_LIMIT=-1 composer install
 RUN bin/console assets:install
 RUN npm install
 # RUN npm run build
