@@ -25,7 +25,6 @@ install:
 	docker-compose run symfony composer install
 	docker-compose run symfony npm install
 	docker-compose run symfony npm run build
-	docker-compose run symfony bin/console make:migration -y
 	docker-compose run symfony chmod -R 777 var
 
 # Start project
