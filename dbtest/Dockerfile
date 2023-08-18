@@ -26,4 +26,4 @@ COPY --from=builder /initialized-db /var/lib/mysql2
 COPY mysqld.cnf /etc/mysql/mariadb.conf.d/
 RUN chmod -R 644 /etc/mysql/mariadb.conf.d/mysqld.cnf
 
-CMD ["mysqld", "--skip-grant-tables"]
+CMD ["mysqld"]
