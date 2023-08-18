@@ -4,9 +4,9 @@ FROM mariadb:10.4 as builder
 RUN ["sed", "-i", "s/exec \"$@\"/echo \"not running $@\"/", "/usr/local/bin/docker-entrypoint.sh"]
 
 # needed for intialization
-ENV MYSQL_DATABASE=[PROJECT]
-ENV MYSQL_ROOT_PASSWORD=pass
-ENV MYSQL_ROOT_HOST=%
+ENV MARIADB_DATABASE=[PROJECT]
+ENV MARIADB_ROOT_PASSWORD=pass
+ENV MARIADB_ROOT_HOST=%
 
 COPY db.sql.gz /docker-entrypoint-initdb.d/db.sql.gz
 
@@ -18,7 +18,12 @@ RUN ["/usr/local/bin/docker-entrypoint.sh", "mysqld", "--datadir", "/initialized
 
 FROM mariadb:10.4
 
+ENV MARIADB_DATABASE=[PROJECT]
+ENV MARIADB_ROOT_PASSWORD=pass
+ENV MARIADB_ROOT_HOST=%
+
 COPY --from=builder /initialized-db /var/lib/mysql2
 COPY mysqld.cnf /etc/mysql/mariadb.conf.d/
+RUN chmod -R 644 /etc/mysql/mariadb.conf.d/mysqld.cnf
 
-CMD ["mysqld", "--skip-grant-tables"]
+CMD ["mysqld"]
