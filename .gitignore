@@ -21,8 +21,3 @@ yarn-error.log
 /phpunit.xml
 phpunit.report.xml
 ###< symfony/phpunit-bridge ###
-
-###> Project
-data/import
-data/ia
-###<
