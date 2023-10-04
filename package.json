@@ -7,6 +7,7 @@
         "build": "encore production --progress"
     },
     "dependencies": {
+        "@babel/plugin-proposal-class-properties": "^7.18.6",
         "@fortawesome/fontawesome-free": "^5.15.4",
         "bootstrap": "^5.1.0",
         "easymde": "^2.16.1",
